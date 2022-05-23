@@ -1,10 +1,11 @@
 async function ekranaGetir(){
-    const gelen=await fetch("data.json");
-    let veri=await gelen.json(); 
+    const kaynak=await fetch('data.json');
+    let veriler=await kaynak.json();
+    console.log(veriler);
 
-    document.getElementById("txtIsim").innerHTML=veri.isim;
-    document.getElementById("txtSoyisim").innerHTML=veri.soyisim;
-    document.getElementById("numberNumarasi").innerHTML=veri.ogrenciNumarasi;
-    document.getElementById("numberYasi").innerHTML=veri.yas;
-    document.getElementById("txtCinsiyeti").innerHTML=veri.cinsiyet;
+    veriler.ogrenciler.forEach(element => {
+        let yeniOgrenci=document.createElement("li");
+        document.getElementById("ogrencilerim").appendChild(yeniOgrenci);
+        yeniOgrenci.innerHTML=element.isim+" "+element.soyisim+" "+element.ogrenciNumarasi+" "+element.yas+" "+element.cinsiyet;
+    });
 }
